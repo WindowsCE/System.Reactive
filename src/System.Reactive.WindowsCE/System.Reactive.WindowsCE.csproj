@@ -8,7 +8,7 @@
     <AssemblyOriginatorKeyFile>$(SolutionDir)tools/keypair.snk</AssemblyOriginatorKeyFile>
     <SignAssembly>true</SignAssembly>
     <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
-    <RootNamespace>System.Reactive</RootNamespace>
+    <RootNamespace>System</RootNamespace>
     <Authors>Fabricio Godoy</Authors>
     <Company>Fabrício Godoy</Company>
     <Copyright>© Fabrício Godoy. All rights reserved.</Copyright>
