@@ -8,7 +8,7 @@
     <AssemblyOriginatorKeyFile>$(SolutionDir)tools/keypair.snk</AssemblyOriginatorKeyFile>
     <SignAssembly>true</SignAssembly>
     <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
-    <RootNamespace>System</RootNamespace>
+    <RootNamespace>System.Reactive</RootNamespace>
     <Authors>Fabricio Godoy</Authors>
     <Company>Fabrício Godoy</Company>
     <Copyright>© Fabrício Godoy. All rights reserved.</Copyright>
@@ -43,12 +43,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Reactive\Strings_Core.Designer.cs">
+    <Compile Update="Strings_Core.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Strings_Core.resx</DependentUpon>
     </Compile>
-    <Compile Update="Reactive\Strings_Linq.Designer.cs">
+    <Compile Update="Strings_Linq.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Strings_Linq.resx</DependentUpon>
@@ -56,11 +56,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Reactive\Strings_Core.resx">
+    <EmbeddedResource Update="Strings_Core.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings_Core.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Reactive\Strings_Linq.resx">
+    <EmbeddedResource Update="Strings_Linq.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings_Linq.Designer.cs</LastGenOutput>
     </EmbeddedResource>
