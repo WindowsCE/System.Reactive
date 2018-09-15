@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
-    <id>System.Reactive.WindowsCE</id>
+    <id>WindowsCE.Reactive</id>
     <version>$version$</version>
     <title>Reactive Extensions (Rx) for .NET on WindowsCE platform.</title>
     <authors>Fabricio Godoy</authors>
@@ -15,7 +15,7 @@
     <tags>net35-cf,windowsce,wince,backport,Rx,Reactive,Extensions,Observable,LINQ,Events</tags>
     <dependencies>
       <group targetFramework="net35-cf">
-        <dependency id="NETStandard.WindowsCE" version="1.1.0" />
+        <dependency id="NETStandard.WindowsCE" version="1.5.0" />
       </group>
     </dependencies>
   </metadata>
