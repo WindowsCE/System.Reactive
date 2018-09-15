@@ -14,7 +14,8 @@ namespace System.Reactive.Concurrency
     /// <seealso cref="TaskPoolScheduler.Default">Instance of this type using the default TaskScheduler to schedule work on the TPL task pool.</seealso>
     public sealed class TaskPoolScheduler : LocalScheduler, ISchedulerLongRunning, ISchedulerPeriodic
     {
-        private static readonly Lazy<TaskPoolScheduler> s_instance = new Lazy<TaskPoolScheduler>(() => new TaskPoolScheduler(new TaskFactory(TaskScheduler.Default)));
+        //private static readonly Lazy<TaskPoolScheduler> s_instance = new Lazy<TaskPoolScheduler>(() => new TaskPoolScheduler(new TaskFactory(TaskScheduler.Default)));
+        private static readonly Lazy<TaskPoolScheduler> s_instance = new Lazy<TaskPoolScheduler>(() => new TaskPoolScheduler(new TaskFactory()));
         private readonly TaskFactory taskFactory;
 
         /// <summary>
@@ -112,13 +113,23 @@ namespace System.Reactive.Concurrency
             var ct = new CancellationDisposable();
             d.Disposable = ct;
 
-            TaskHelpers.Delay(dueTime, ct.Token).ContinueWith(_ =>
+            //TaskHelpers.Delay(dueTime, ct.Token).ContinueWith(_ =>
+            //{
+            //    if (!d.IsDisposed)
+            //    {
+            //        d.Disposable = action(this, state);
+            //    }
+            //}, CancellationToken.None, TaskContinuationOptions.ExecuteSynchronously | TaskContinuationOptions.OnlyOnRanToCompletion, taskFactory.Scheduler);
+            TaskHelpers.Delay(dueTime, ct.Token).ContinueWith(t =>
             {
+                if (!t.IsCompletedSuccessfully)
+                    return;
+
                 if (!d.IsDisposed)
                 {
                     d.Disposable = action(this, state);
                 }
-            }, CancellationToken.None, TaskContinuationOptions.ExecuteSynchronously | TaskContinuationOptions.OnlyOnRanToCompletion, taskFactory.Scheduler);
+            }, CancellationToken.None);
 
             return d;
         }
@@ -187,9 +198,23 @@ namespace System.Reactive.Concurrency
             var moveNext = default(Action);
             moveNext = () =>
             {
+                //TaskHelpers.Delay(period, cancel.Token).ContinueWith(
+                //    _ =>
+                //    {
+                //        moveNext();
+
+                //        gate.Wait(() =>
+                //        {
+                //            state1 = action(state1);
+                //        });
+                //    },
+                    //CancellationToken.None, TaskContinuationOptions.ExecuteSynchronously | TaskContinuationOptions.OnlyOnRanToCompletion, taskFactory.Scheduler
                 TaskHelpers.Delay(period, cancel.Token).ContinueWith(
-                    _ =>
+                    t =>
                     {
+                        if (!t.IsCompletedSuccessfully)
+                            return;
+
                         moveNext();
 
                         gate.Wait(() =>
@@ -197,7 +222,7 @@ namespace System.Reactive.Concurrency
                             state1 = action(state1);
                         });
                     },
-                    CancellationToken.None, TaskContinuationOptions.ExecuteSynchronously | TaskContinuationOptions.OnlyOnRanToCompletion, taskFactory.Scheduler
+                    CancellationToken.None
                 );
             };
 

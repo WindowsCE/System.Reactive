@@ -22,27 +22,24 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile>CompactFramework</TargetFrameworkProfile>
-    <DefineConstants>NET35_CF;WindowsCE</DefineConstants>
-    <DisableImplicitFrameworkReferences>True</DisableImplicitFrameworkReferences>
-    <NoStdLib>True</NoStdLib>
-    <NoConfig>true</NoConfig>
-    <FileAlignment>512</FileAlignment>
-    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <PlatformID>E2BECB1F-8C8C-41ba-B736-9BE7D946A398</PlatformID>
     <Optimize>False</Optimize>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NETStandard.WindowsCE" Version="1.3.1" />
-    <Reference Include="mscorlib, Version=3.5.0.0, Culture=neutral, PublicKeyToken=969db8053d3322ac" />
-    <Reference Include="System, Version=3.5.0.0, Culture=neutral, PublicKeyToken=969db8053d3322ac" />
-    <Reference Include="System.Core, Version=3.5.0.0, Culture=neutral, PublicKeyToken=969db8053d3322ac" />
+    <PackageReference Include="NETStandard.WindowsCE" Version="1.5.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Linq\Observable\CombineLatest.Generated.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CombineLatest.Generated.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Linq\Observable\Zip.Generated.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Zip.Generated.tt</DependentUpon>
+    </Compile>
     <Compile Update="Strings_Core.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -64,6 +61,21 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings_Linq.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Linq\Observable\CombineLatest.Generated.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CombineLatest.Generated.cs</LastGenOutput>
+    </None>
+    <None Update="Linq\Observable\Zip.Generated.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Zip.Generated.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
 
 </Project>
